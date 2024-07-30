@@ -11,6 +11,7 @@
 
     <modules>
         <module>hivedemo</module>
+        <module>sparkrdd</module>
     </modules>
 
     <properties>
