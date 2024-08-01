@@ -12,6 +12,7 @@
     <modules>
         <module>hivedemo</module>
         <module>sparkrdd</module>
+        <module>sparksql</module>
     </modules>
 
     <properties>
