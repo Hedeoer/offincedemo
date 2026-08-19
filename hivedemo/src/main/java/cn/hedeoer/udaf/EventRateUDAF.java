@@ -1,5 +1,6 @@
 package cn.hedeoer.udaf;
 
+import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.metadata.HiveException;
 import org.apache.hadoop.hive.ql.parse.SemanticException;
 import org.apache.hadoop.hive.ql.udf.generic.AbstractGenericUDAFResolver;
@@ -68,6 +69,18 @@ import java.util.Arrays;
  * 如果入口类直接继承 GenericUDAFEvaluator 并实现 GenericUDAFResolver2，
  * Hive 本地测试可能通过，但 Spark SQL 中可能报 No handler for UDF/UDAF/UDTF。</p>
  */
+@Description(
+        name = "event_rate",
+        value = "_FUNC_(event_type, numerator_event, denominator_event) - Calculates the ratio between two event counts",
+        extended = "Arguments:\n" +
+                "  event_type: Event type column value, such as view, click, or pay.\n" +
+                "  numerator_event: Event type counted as the numerator.\n" +
+                "  denominator_event: Event type counted as the denominator.\n" +
+                "Returns:\n" +
+                "  double. Numerator event count divided by denominator event count; returns null when the denominator count is 0.\n" +
+                "Example:\n" +
+                "  event_rate(event_type, 'pay', 'view')"
+)
 public class EventRateUDAF extends AbstractGenericUDAFResolver {
 
     /**

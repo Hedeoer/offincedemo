@@ -1,5 +1,6 @@
 package cn.hedeoer.udf;
 
+import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentLengthException;
 import org.apache.hadoop.hive.ql.metadata.HiveException;
@@ -10,6 +11,17 @@ import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectIn
 
 import java.text.DecimalFormat;
 
+@Description(
+        name = "int_to_precent",
+        value = "_FUNC_(num, denom) - Returns num divided by denom as a percent string",
+        extended = "Arguments:\n" +
+                "  num: Numerator, int type.\n" +
+                "  denom: Denominator, int type.\n" +
+                "Returns:\n" +
+                "  string. Percent string, such as 25%.\n" +
+                "Example:\n" +
+                "  int_to_precent(1, 4)"
+)
 public class IntToPrecent extends GenericUDF {
     // 处理逻辑
     public String intToPrecent(String i1, String i2){
